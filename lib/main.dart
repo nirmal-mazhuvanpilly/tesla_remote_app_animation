@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'package:tesla_animation/generated/assets.dart';
 import 'package:tesla_animation/provider/tesla_provider.dart';
+import 'package:tesla_animation/screens/battery_screen.dart';
 import 'package:tesla_animation/screens/door_lock_screen.dart';
 import 'package:tesla_animation/widgets/bottom_nav_bar.dart';
 
@@ -56,6 +57,7 @@ class _TeslaHomeState extends State<TeslaHome> {
               );
             }),
             const DoorLockScreen(),
+            const BatteryScreen(),
             const BottomNavBar(),
           ],
         ),
