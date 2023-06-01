@@ -59,6 +59,9 @@ class BottomNavBarItem extends StatelessWidget {
       dimension: 30,
       child: InkWell(
         onTap: () {
+          if (itemIndex == 0) {
+            teslaModel.changeDoorLockScreenVisibility(true);
+          }
           teslaModel.updateSelectedIndex(itemIndex);
         },
         child: Selector<TeslaProvider, int>(

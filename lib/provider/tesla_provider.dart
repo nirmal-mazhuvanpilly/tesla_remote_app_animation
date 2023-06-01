@@ -32,4 +32,11 @@ class TeslaProvider extends ChangeNotifier {
     selectedIndex = index;
     notifyListeners();
   }
+
+  bool doorLockScreenVisibility = true;
+
+  void changeDoorLockScreenVisibility(bool value) {
+    doorLockScreenVisibility = value;
+    notifyListeners();
+  }
 }
