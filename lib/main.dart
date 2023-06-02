@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
-import 'package:tesla_animation/generated/assets.dart';
 import 'package:tesla_animation/provider/tesla_provider.dart';
 import 'package:tesla_animation/screens/battery_screen.dart';
+import 'package:tesla_animation/screens/car_view.dart';
 import 'package:tesla_animation/screens/door_lock_screen.dart';
+import 'package:tesla_animation/screens/temp_screen.dart';
 import 'package:tesla_animation/widgets/bottom_nav_bar.dart';
 
 void main() {
@@ -46,19 +46,12 @@ class _TeslaHomeState extends State<TeslaHome> {
       child: Scaffold(
         backgroundColor: Colors.black,
         body: Stack(
-          children: [
-            LayoutBuilder(builder: (context, constraints) {
-              return Center(
-                child: SizedBox(
-                  height: constraints.maxHeight * .80,
-                  width: constraints.maxWidth * .80,
-                  child: SvgPicture.asset(Assets.iconsCar),
-                ),
-              );
-            }),
-            const DoorLockScreen(),
-            const BatteryScreen(),
-            const BottomNavBar(),
+          children: const [
+            CarView(),
+            DoorLockScreen(),
+            BatteryScreen(),
+            TempScreen(),
+            BottomNavBar(),
           ],
         ),
       ),

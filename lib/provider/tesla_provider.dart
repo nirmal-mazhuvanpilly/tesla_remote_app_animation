@@ -39,4 +39,37 @@ class TeslaProvider extends ChangeNotifier {
     doorLockScreenVisibility = value;
     notifyListeners();
   }
+
+  bool isCool = true;
+  bool isHot = false;
+
+  void setCool() {
+    isCool = true;
+    isHot = false;
+    notifyListeners();
+  }
+
+  void setHot() {
+    isCool = false;
+    isHot = true;
+    notifyListeners();
+  }
+
+  int temperature = 18;
+
+  void increaseTemperature() {
+    temperature++;
+    if (temperature > 25) {
+      setHot();
+    }
+    notifyListeners();
+  }
+
+  void decreaseTemperature() {
+    temperature--;
+    if (temperature < 25) {
+      setCool();
+    }
+    notifyListeners();
+  }
 }
