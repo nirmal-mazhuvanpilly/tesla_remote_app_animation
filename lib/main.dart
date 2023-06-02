@@ -5,6 +5,7 @@ import 'package:tesla_animation/screens/battery_screen.dart';
 import 'package:tesla_animation/screens/car_view.dart';
 import 'package:tesla_animation/screens/door_lock_screen.dart';
 import 'package:tesla_animation/screens/temp_screen.dart';
+import 'package:tesla_animation/screens/type_screen.dart';
 import 'package:tesla_animation/widgets/bottom_nav_bar.dart';
 
 void main() {
@@ -51,6 +52,7 @@ class _TeslaHomeState extends State<TeslaHome> {
             DoorLockScreen(),
             BatteryScreen(),
             TempScreen(),
+            TyreScreen(),
             BottomNavBar(),
           ],
         ),
