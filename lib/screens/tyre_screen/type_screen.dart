@@ -63,7 +63,7 @@ class _TyreScreenState extends State<TyreScreen> with TickerProviderStateMixin {
   }
 
   animationStatusListener() {
-    tyreController.addStatusListener((status) {
+    cardController.addStatusListener((status) {
       if (status == AnimationStatus.forward) {
         SchedulerBinding.instance.addPostFrameCallback((_) {
           screenVisibility.value = true;
@@ -71,6 +71,10 @@ class _TyreScreenState extends State<TyreScreen> with TickerProviderStateMixin {
       } else if (status == AnimationStatus.dismissed) {
         SchedulerBinding.instance.addPostFrameCallback((_) {
           screenVisibility.value = false;
+        });
+      } else if (status == AnimationStatus.completed) {
+        SchedulerBinding.instance.addPostFrameCallback((_) {
+          tyreController.forward();
         });
       }
     });
@@ -98,7 +102,6 @@ class _TyreScreenState extends State<TyreScreen> with TickerProviderStateMixin {
                 selector: (_, provider) => provider.selectedIndex,
                 builder: (_, index, __) {
                   if (index == 3) {
-                    tyreController.forward();
                     cardController.forward();
                   } else {
                     tyreController.reverse();
