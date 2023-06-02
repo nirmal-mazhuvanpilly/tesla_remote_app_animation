@@ -59,16 +59,13 @@ class BottomNavBarItem extends StatelessWidget {
       dimension: 30,
       child: InkWell(
         onTap: () {
-          if (itemIndex == 0) {
-            teslaModel.changeDoorLockScreenVisibility(true);
-          }
           teslaModel.updateSelectedIndex(itemIndex);
         },
         child: Selector<TeslaProvider, int>(
-            selector: (context, provider) => provider.selectedIndex,
-            builder: (context, value, child) {
+            selector: (_, provider) => provider.selectedIndex,
+            builder: (_, index, __) {
               return SvgPicture.asset(asset,
-                  color: value == itemIndex ? Colors.cyanAccent : Colors.grey);
+                  color: index == itemIndex ? Colors.cyanAccent : Colors.grey);
             }),
       ),
     ));

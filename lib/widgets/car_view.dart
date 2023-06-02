@@ -22,8 +22,10 @@ class _CarViewState extends State<CarView> with SingleTickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
+
     controller = AnimationController(
         vsync: this, duration: const Duration(milliseconds: 500));
+
     size = window.physicalSize;
 
     slideAnimation = Tween<double>(begin: 0.0, end: size.width * .20)
@@ -42,30 +44,31 @@ class _CarViewState extends State<CarView> with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Selector<TeslaProvider, int>(
-        selector: (context, provider) => provider.selectedIndex,
-        builder: (context, value, child) {
-          if (value == 2) {
+        selector: (_, provider) => provider.selectedIndex,
+        child: LayoutBuilder(builder: (context, constraints) {
+          return Center(
+            child: AnimatedBuilder(
+                animation: slideAnimation,
+                child: SizedBox(
+                  height: constraints.maxHeight * .80,
+                  width: constraints.maxWidth * .80,
+                  child: SvgPicture.asset(Assets.iconsCar),
+                ),
+                builder: (context, child) {
+                  return Transform.translate(
+                    offset: Offset(slideAnimation.value, 0),
+                    child: child,
+                  );
+                }),
+          );
+        }),
+        builder: (_, index, child) {
+          if (index == 2) {
             controller.forward();
           } else {
             controller.reverse();
           }
-          return LayoutBuilder(builder: (context, constraints) {
-            return Center(
-              child: AnimatedBuilder(
-                  animation: slideAnimation,
-                  child: SizedBox(
-                    height: constraints.maxHeight * .80,
-                    width: constraints.maxWidth * .80,
-                    child: SvgPicture.asset(Assets.iconsCar),
-                  ),
-                  builder: (context, child) {
-                    return Transform.translate(
-                      offset: Offset(slideAnimation.value, 0),
-                      child: child,
-                    );
-                  }),
-            );
-          });
+          return child!;
         });
   }
 }

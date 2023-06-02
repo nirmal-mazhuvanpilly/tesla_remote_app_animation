@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tesla_animation/provider/tesla_provider.dart';
-import 'package:tesla_animation/screens/battery_screen.dart';
-import 'package:tesla_animation/screens/car_view.dart';
-import 'package:tesla_animation/screens/door_lock_screen.dart';
-import 'package:tesla_animation/screens/temp_screen.dart';
-import 'package:tesla_animation/screens/type_screen.dart';
+import 'package:tesla_animation/screens/battery_screen/battery_screen.dart';
+import 'package:tesla_animation/widgets/car_view.dart';
+import 'package:tesla_animation/screens/door_lock_screen/door_lock_screen.dart';
+import 'package:tesla_animation/screens/temperature_screen/temperature_screen.dart';
+import 'package:tesla_animation/screens/tyre_screen/type_screen.dart';
 import 'package:tesla_animation/widgets/bottom_nav_bar.dart';
 
 void main() {
@@ -51,7 +51,7 @@ class _TeslaHomeState extends State<TeslaHome> {
             CarView(),
             DoorLockScreen(),
             BatteryScreen(),
-            TempScreen(),
+            TemperatureScreen(),
             TyreScreen(),
             BottomNavBar(),
           ],
