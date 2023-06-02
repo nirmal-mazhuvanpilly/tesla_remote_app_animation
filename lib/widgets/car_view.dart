@@ -3,7 +3,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'package:tesla_animation/generated/assets.dart';
 import 'package:tesla_animation/provider/tesla_provider.dart';
-import 'dart:ui';
 
 class CarView extends StatefulWidget {
   const CarView({
@@ -17,7 +16,6 @@ class CarView extends StatefulWidget {
 class _CarViewState extends State<CarView> with SingleTickerProviderStateMixin {
   late AnimationController controller;
   late Animation<double> slideAnimation;
-  late Size size;
 
   @override
   void initState() {
@@ -26,10 +24,8 @@ class _CarViewState extends State<CarView> with SingleTickerProviderStateMixin {
     controller = AnimationController(
         vsync: this, duration: const Duration(milliseconds: 500));
 
-    size = window.physicalSize;
-
-    slideAnimation = Tween<double>(begin: 0.0, end: size.width * .20)
-        .animate(CurvedAnimation(
+    slideAnimation =
+        Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
       parent: controller,
       curve: Curves.easeInOutBack,
     ));
@@ -56,7 +52,8 @@ class _CarViewState extends State<CarView> with SingleTickerProviderStateMixin {
                 ),
                 builder: (context, child) {
                   return Transform.translate(
-                    offset: Offset(slideAnimation.value, 0),
+                    offset: Offset(
+                        (constraints.maxWidth / 2) * slideAnimation.value, 0),
                     child: child,
                   );
                 }),
